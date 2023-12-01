@@ -24,7 +24,7 @@ namespace Assignment5.Controllers
         {
             if (_context.MusicInventory == null)
             {
-                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+                return Problem("Entity set  is null.");
             }
 
             var music = from m in _context.MusicInventory
