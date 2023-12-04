@@ -20,15 +20,26 @@ namespace Assignment5.Controllers
         }
 
         // GET: MusicInventories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-              return _context.MusicInventory != null ? 
-                          View(await _context.MusicInventory.ToListAsync()) :
-                          Problem("Entity set 'Assignment5Context.MusicInventory'  is null.");
+            if (_context.MusicInventory == null)
+            {
+                return Problem("Entity set  is null.");
+            }
+
+            var music = from m in _context.MusicInventory
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                music = music.Where(s => s.musicTitle!.Contains(searchString));
+            }
+
+            return View(await music.ToListAsync());
         }
 
-        // GET: MusicInventories/Details/5
-        public async Task<IActionResult> Details(int? id)
+            // GET: MusicInventories/Details/5
+            public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.MusicInventory == null)
             {
