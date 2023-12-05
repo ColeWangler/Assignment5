@@ -1,73 +1,84 @@
-﻿@model IEnumerable<Assignment5.Models.MusicInventory>
+﻿@model Assignment5.Models.MusicGenreModel;
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Music Selecion Page:";
 }
 
-<h1>Administrator:</h1>
+<h1>Music Selection Page</h1>
 
-<p>Welcome Administrator</p>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<form asp-controller="MusicInventories" asp-action="Index">
+<form asp-controller="MusicInventories" asp-action="Index" method="get">
     <p>
-        Title: <input type="text" name="SearchString" />
+        Music Genre:
+
+
+
+        <select asp-for="MusicGenre" asp-items="Model.Genres">
+            <option value="">All</option>
+        </select>
+
+
+
+        Music Producer:
+
+        <select asp-for="MusicProducers" asp-items="Model.Producers">
+            <option value="">All</option>
+        </select>
+
+
+
         <input type="submit" value="Filter" />
     </p>
 </form>
+
+
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.musicTitle)
+                @Html.DisplayNameFor(model => model.Music![0].musicTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.genre)
+                @Html.DisplayNameFor(model => model.Music![0].genre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.performer)
+                @Html.DisplayNameFor(model => model.Music![0].performer)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.price)
+                @Html.DisplayNameFor(model => model.Music![0].price)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.typeOfDownload)
+                @Html.DisplayNameFor(model => model.Music![0].typeOfDownload)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.yearReleased)
+                @Html.DisplayNameFor(model => model.Music![0].yearReleased)
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.musicTitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.genre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.performer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.typeOfDownload)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.yearReleased)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.Music!)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.musicTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.genre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.performer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.typeOfDownload)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.yearReleased)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

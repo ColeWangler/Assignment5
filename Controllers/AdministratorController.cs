@@ -10,62 +10,25 @@ using Assignment5.Models;
 
 namespace Assignment5.Controllers
 {
-    public class MusicInventoriesController : Controller
+    public class AdministratorController : Controller
     {
         private readonly Assignment5Context _context;
 
-        public MusicInventoriesController(Assignment5Context context)
+        public AdministratorController(Assignment5Context context)
         {
             _context = context;
         }
 
-        // GET: MusicInventories
-        public async Task<IActionResult> Index(string musicGenre,string musicPerformer)
+        // GET: Administrator
+        public async Task<IActionResult> Index()
         {
-            if (_context.MusicInventory == null)
-            {
-                return Problem("Entity set  is null.");
-            }
-
-            IQueryable<string> genreQuery = from m in _context.MusicInventory
-                                            orderby m.genre
-                                            select m.genre;
-
-
-            IQueryable<string> producerQuery = from m in _context.MusicInventory
-                                               orderby m.performer
-                                               where m.genre == musicGenre
-                                            select m.performer;
-
-            var music = from m in _context.MusicInventory
-                        select m;
-                        
-
-            
-            if (!string.IsNullOrEmpty(musicGenre) )
-            {
-
-                music = music.Where(x => x.genre == musicGenre );
-            }
-
-            if (!string.IsNullOrEmpty(musicPerformer))
-            {
-                music = music.Where(a => a.performer!.Contains(musicPerformer));
-            }
-
-
-            var musicGenreVM = new MusicGenreModel
-            {
-                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                Producers = new SelectList(await producerQuery.Distinct().ToListAsync()),
-                Music = await music.ToListAsync()
-            };
-
-            return View(musicGenreVM);
+              return _context.MusicInventory != null ? 
+                          View(await _context.MusicInventory.ToListAsync()) :
+                          Problem("Entity set 'Assignment5Context.MusicInventory'  is null.");
         }
 
-            // GET: MusicInventories/Details/5
-            public async Task<IActionResult> Details(int? id)
+        // GET: Administrator/Details/5
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.MusicInventory == null)
             {
@@ -82,13 +45,13 @@ namespace Assignment5.Controllers
             return View(musicInventory);
         }
 
-        // GET: MusicInventories/Create
+        // GET: Administrator/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: MusicInventories/Create
+        // POST: Administrator/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -104,7 +67,7 @@ namespace Assignment5.Controllers
             return View(musicInventory);
         }
 
-        // GET: MusicInventories/Edit/5
+        // GET: Administrator/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.MusicInventory == null)
@@ -120,7 +83,7 @@ namespace Assignment5.Controllers
             return View(musicInventory);
         }
 
-        // POST: MusicInventories/Edit/5
+        // POST: Administrator/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -155,7 +118,7 @@ namespace Assignment5.Controllers
             return View(musicInventory);
         }
 
-        // GET: MusicInventories/Delete/5
+        // GET: Administrator/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.MusicInventory == null)
@@ -173,7 +136,7 @@ namespace Assignment5.Controllers
             return View(musicInventory);
         }
 
-        // POST: MusicInventories/Delete/5
+        // POST: Administrator/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

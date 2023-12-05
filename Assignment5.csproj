@@ -279,6 +279,7 @@
     <None Include="obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.Assignment5.props" />
     <None Include="obj\Debug\net7.0\staticwebassets\msbuild.buildTransitive.Assignment5.props" />
     <None Include="obj\project.nuget.cache" />
+    <None Include="wwwroot\musicshop.jpg" />
   </ItemGroup>
 
   <ItemGroup>
