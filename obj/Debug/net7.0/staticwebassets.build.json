@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fsFPqVvEHdKw6Sz1ZEBPbd+VQeT2R4EpIy5lrRvbGaw=",
+  "Hash": "s0U5iXLOtyjHSgZNfZcAYcBeWRVYqhTi8SQoaaEesAI=",
   "Source": "Assignment5",
   "BasePath": "_content/Assignment5",
   "Mode": "Default",
@@ -1069,6 +1069,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Cole Wangler\\source\\repos\\Assignment5\\wwwroot\\musicshop.jpg",
+      "SourceId": "Assignment5",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Cole Wangler\\source\\repos\\Assignment5\\wwwroot\\",
+      "BasePath": "_content/Assignment5",
+      "RelativePath": "musicshop.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\musicshop.jpg"
     }
   ]
 }
