@@ -20,7 +20,7 @@ namespace Assignment5.Controllers
         }
 
         // GET: MusicInventories
-        public async Task<IActionResult> Index(string musicGenre,string musicPerformer)
+        public async Task<IActionResult> Index(string musicGenre,string musicPerformer, string searchString)
         {
             if (_context.MusicInventory == null)
             {
@@ -39,9 +39,13 @@ namespace Assignment5.Controllers
 
             var music = from m in _context.MusicInventory
                         select m;
-                        
 
-            
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                music = music.Where(a => a.musicTitle!.Contains(searchString));
+            }
+
             if (!string.IsNullOrEmpty(musicGenre) )
             {
 

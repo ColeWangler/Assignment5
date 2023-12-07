@@ -7,8 +7,6 @@ namespace Assignment5.Models;
     {
         public List<MusicInventory>? Music { get; set; }
         public SelectList? Genres { get; set; }
-    public SelectList? Music2 { get; set; }
-
     public string? MusicGenre { get; set; }
     public SelectList? Producers { get; set; }
 
